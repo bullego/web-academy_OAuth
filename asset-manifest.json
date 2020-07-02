@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/web-academy_OAuth/static/js/main.246b2df7.chunk.js",
-    "main.js.map": "/web-academy_OAuth/static/js/main.246b2df7.chunk.js.map",
+    "main.js": "/web-academy_OAuth/static/js/main.30b695fc.chunk.js",
+    "main.js.map": "/web-academy_OAuth/static/js/main.30b695fc.chunk.js.map",
     "runtime-main.js": "/web-academy_OAuth/static/js/runtime-main.b368c138.js",
     "runtime-main.js.map": "/web-academy_OAuth/static/js/runtime-main.b368c138.js.map",
     "static/js/2.9f9efa78.chunk.js": "/web-academy_OAuth/static/js/2.9f9efa78.chunk.js",
     "static/js/2.9f9efa78.chunk.js.map": "/web-academy_OAuth/static/js/2.9f9efa78.chunk.js.map",
     "index.html": "/web-academy_OAuth/index.html",
-    "precache-manifest.486fba60f8ac0fe355e85488534fb437.js": "/web-academy_OAuth/precache-manifest.486fba60f8ac0fe355e85488534fb437.js",
+    "precache-manifest.524e0a7acc7e4709d17a5bce258ece69.js": "/web-academy_OAuth/precache-manifest.524e0a7acc7e4709d17a5bce258ece69.js",
     "service-worker.js": "/web-academy_OAuth/service-worker.js",
     "static/js/2.9f9efa78.chunk.js.LICENSE.txt": "/web-academy_OAuth/static/js/2.9f9efa78.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b368c138.js",
     "static/js/2.9f9efa78.chunk.js",
-    "static/js/main.246b2df7.chunk.js"
+    "static/js/main.30b695fc.chunk.js"
   ]
 }

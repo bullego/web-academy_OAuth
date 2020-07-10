@@ -1,0 +1,57 @@
+.header {
+	display: block;
+	margin: 10px;
+	padding: 10px;
+	border-radius: 4px;
+	background-color: #0369a7;
+	color: #7fb0d2;
+
+	a {
+		margin-right: 16px;
+		display: inline-block;
+		font-size: 16px;
+		color: rgba(255,255,255, 0.8);
+		cursor: pointer;
+
+		&:hover,
+		&:active,
+		&:focus {
+			color: rgba(255,255,255, 1);
+		}
+	}
+	h2 {
+		margin: 16px 0;
+		font-size: 18px;
+		font-weight: 400;
+		color: #fff;
+	}
+}
+
+.main {
+	display: block;
+	margin: 10px;
+	padding: 10px;
+	border-radius: 4px;
+	background-color: #40a35b;
+	color: #ffffff;
+
+	a {
+		margin-right: 16px;
+		display: inline-block;
+		font-size: 16px;
+		color: rgba(255,255,255, 0.8);
+		cursor: pointer;
+
+		&:hover,
+		&:active,
+		&:focus {
+			color: rgba(255,255,255, 1);
+		}
+	}
+	h2 {
+		margin: 16px 0;
+		font-size: 18px;
+		font-weight: 400;
+		color: #fff;
+	}
+}

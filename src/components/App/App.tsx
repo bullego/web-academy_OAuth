@@ -1,72 +1,164 @@
 import * as React from 'react';
-import { setToLocalStorage, getFromLocalStorage } from '../../utils';
+import { Route,
+				 Link,
+				 Switch,
+				 Redirect,
+				 RouteChildrenProps,
+				 RouteComponentProps,
+				 withRouter } from 'react-router-dom';
+import { routes,
+				 AppRoute,
+				 ROUTES_URLS } from './routes';
+import { getFromLocalStorage, setToLocalStorage } from '../../utils';
+import { Authorization } from '../Authorization';
+import { ProtectedRoute } from '../ProtectedRoute';
+import './App.scss';
 
-const { REACT_APP_API_KEY, REACT_APP_NAME, REACT_APP_SCOPE, REACT_APP_REDIRECT_URL } = process.env;
+
 const TOKEN_STORAGE_KEY = 'TOKEN';
+const { REACT_APP_API_KEY } = process.env;
+const INITIAL_STATE = {
+	token: '',
+	boards: [],
+	userProfile: undefined
+}
 
 
 interface Board {
 	id: string;
 	name: string;
-	desc: string;
+	desc?: string;
 	pinned: boolean;
 }
 interface AppState {
 	token: string;
 	boards: Array<Board>;
+	userProfile: any;
+}
+interface AppProps extends RouteComponentProps {
+
+}
+interface CustomToken {
+	token: string;
+	someValue?: number;
 }
 
 
-export class App extends React.Component<any, AppState> {
-	public state = {
-		token: '',
-		boards: []
-	}
+class App extends React.Component<AppProps, AppState> {
+	public state = INITIAL_STATE;
 
-
-	private async setToken(token: string) {
-		this.setState({
-			token: token
-		})
-
-		await setToLocalStorage(TOKEN_STORAGE_KEY, token);
+	componentDidMount() {		
+		this.getToken();
 	}
 
 	private async getToken() {
-		const token = await getFromLocalStorage(TOKEN_STORAGE_KEY);
-		return token;
+		if(this.state.token) {
+			return;
+		}
+		
+		const token = getFromLocalStorage<CustomToken>(TOKEN_STORAGE_KEY);
+		
+		if(!token) {			
+			return this.goToLogin();
+		}
+		
+		const url = `https://api.trello.com/1/members/me?key=${REACT_APP_API_KEY}&token=${token}`;
+		const response = await fetch(url);
+
+		if(response.ok === true && response.status === 200) {
+			const userProfile = await response.json();
+
+			this.setProfile(userProfile);
+			this.setToken(token);
+
+			return this.goToDashboard();
+		}
+
+		return this.goToLogin();
 	}
 
-	private getTokenFromUrl() {
-		return window.location.hash.split('=')[1];
+	private setProfile = (userProfile: any) => {
+		this.setState({
+			userProfile: userProfile
+		})
+	}
+	
+	private setToken = (token: any) => {
+		this.setState({
+			token: token
+		})		
+		setToLocalStorage<CustomToken>(TOKEN_STORAGE_KEY, {token});
 	}
 
-	private isLoggedIn() {
+	private goToLogin() {
+		this.props.history.push(ROUTES_URLS.LOGIN);
+	}
+
+	private goToDashboard() {
+		this.props.history.push(ROUTES_URLS.DASHBOARD);
+	}
+
+	private get isLoggedIn() {
 		return !!this.state.token;
 	}
 
-	private renderHeader() {		
-		const requestUrl = `https://trello.com/1/authorize?return_url=${REACT_APP_REDIRECT_URL}&expiration=1day&name=${REACT_APP_NAME}&scope=${REACT_APP_SCOPE}&response_type=token&key=${REACT_APP_API_KEY}`;
-
+	private renderHeader() {
 		return (
-			<header>
-				{ this.isLoggedIn() ? 'Hello user' : <a href={requestUrl}>Login with Trello account</a> }
+			<header className='header'>
+				{ routes.map((link: AppRoute, indx: number) => {
+					return link.isHidden ? null :	<Link key={indx}
+																							to={link.path}>
+																					{link.title}
+																				</Link>
+					})
+				}
+				<button onClick={this.logOut}>
+						Log Out
+				</button>
 			</header>
 		)
 	}
 
+	private logOut = () => {
+		this.setState(INITIAL_STATE);
+		this.goToLogin();
+	}
+
 	private renderContent() {
 		return (
-			<main>
-				{ this.isLoggedIn() ? <h2>Lorem ipsum dolor sit amet.</h2> : 'Please log in' }
+			<main className='main'>
+				<Switch>
+					{routes.map(this.renderRoute)}
+
+					<Route	path={ROUTES_URLS.AUTHORIZATION}
+									render={(props: RouteChildrenProps) => { 
+										return <Authorization {...props} onSetToken={this.setToken} />
+									}}
+					/>
+					<Redirect to={ROUTES_URLS.NOT_FOUND} />
+				</Switch>
 			</main>
 		)
 	}
 
-
-	public componentDidMount() {
-		const newToken = this.getTokenFromUrl();
-		this.setToken(newToken);
+	private renderRoute = (route: AppRoute, indx: number) => {
+		if(route.isProtected) {
+			return  <ProtectedRoute key={indx} 
+															path={route.path}
+															exact={route.exact}
+															render={route.render}
+															isAuthenticated={this.isLoggedIn}
+			 				/>
+		}
+		else {
+			return  <Route key={indx} 
+										 path={route.path}
+										 exact={route.exact}
+										 render={(props) => {
+										 	return route.render({...props})
+										 }}
+							/>
+		}
 	}
 
 	public render() {
@@ -78,3 +170,11 @@ export class App extends React.Component<any, AppState> {
 		)
 	}
 }
+
+const AppWithRouter = withRouter(App);
+export { AppWithRouter as App };
+
+
+// "homepage": "https://bullego.github.io/web-academy_OAuth/",
+// "predeploy": "npm run build",
+// "deploy": "gh-pages -d build",

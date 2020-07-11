@@ -56,7 +56,7 @@ class App extends React.Component<AppProps, AppState> {
 			return;
 		}
 		
-		const token = getFromLocalStorage<CustomToken>(TOKEN_STORAGE_KEY);
+		const { token } = getFromLocalStorage<CustomToken>(TOKEN_STORAGE_KEY);
 		
 		if(!token) {			
 			return this.goToLogin();

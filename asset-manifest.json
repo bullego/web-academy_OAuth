@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/web-academy_OAuth/static/css/main.dc4ff322.chunk.css",
-    "main.js": "/web-academy_OAuth/static/js/main.24f8e930.chunk.js",
-    "main.js.map": "/web-academy_OAuth/static/js/main.24f8e930.chunk.js.map",
+    "main.js": "/web-academy_OAuth/static/js/main.911c6727.chunk.js",
+    "main.js.map": "/web-academy_OAuth/static/js/main.911c6727.chunk.js.map",
     "runtime-main.js": "/web-academy_OAuth/static/js/runtime-main.0519ba2c.js",
     "runtime-main.js.map": "/web-academy_OAuth/static/js/runtime-main.0519ba2c.js.map",
-    "static/js/2.10fd8425.chunk.js": "/web-academy_OAuth/static/js/2.10fd8425.chunk.js",
-    "static/js/2.10fd8425.chunk.js.map": "/web-academy_OAuth/static/js/2.10fd8425.chunk.js.map",
+    "static/js/2.6cf331e3.chunk.js": "/web-academy_OAuth/static/js/2.6cf331e3.chunk.js",
+    "static/js/2.6cf331e3.chunk.js.map": "/web-academy_OAuth/static/js/2.6cf331e3.chunk.js.map",
     "index.html": "/web-academy_OAuth/index.html",
-    "precache-manifest.7318554368eaec19b360c90fbe428220.js": "/web-academy_OAuth/precache-manifest.7318554368eaec19b360c90fbe428220.js",
+    "precache-manifest.db5468ef7026ce952ced80fda601c025.js": "/web-academy_OAuth/precache-manifest.db5468ef7026ce952ced80fda601c025.js",
     "service-worker.js": "/web-academy_OAuth/service-worker.js",
     "static/css/main.dc4ff322.chunk.css.map": "/web-academy_OAuth/static/css/main.dc4ff322.chunk.css.map",
-    "static/js/2.10fd8425.chunk.js.LICENSE.txt": "/web-academy_OAuth/static/js/2.10fd8425.chunk.js.LICENSE.txt"
+    "static/js/2.6cf331e3.chunk.js.LICENSE.txt": "/web-academy_OAuth/static/js/2.6cf331e3.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.0519ba2c.js",
-    "static/js/2.10fd8425.chunk.js",
+    "static/js/2.6cf331e3.chunk.js",
     "static/css/main.dc4ff322.chunk.css",
-    "static/js/main.24f8e930.chunk.js"
+    "static/js/main.911c6727.chunk.js"
   ]
 }

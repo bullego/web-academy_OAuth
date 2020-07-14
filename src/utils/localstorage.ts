@@ -5,3 +5,7 @@ export const setToLocalStorage = <N> (key: string, data: N) => {
 export const getFromLocalStorage = <G> (key: string): G => {
 	return JSON.parse(window.localStorage.getItem(key) || '{}');
 };
+
+
+
+

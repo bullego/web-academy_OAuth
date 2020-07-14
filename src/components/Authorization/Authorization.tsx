@@ -9,6 +9,8 @@ interface PropsAuthorization extends RouteChildrenProps {
 }
 
 export const Authorization: FunctionComponent<PropsAuthorization> = (props: PropsAuthorization) => {
+	console.log('PROPS from AUTH: ', props);
+	
 	const {location:{hash}, onSetToken} = props;
 	const token = hash.split('=')[1];
 

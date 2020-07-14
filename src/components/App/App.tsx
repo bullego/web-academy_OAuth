@@ -13,6 +13,7 @@ import { getFromLocalStorage, setToLocalStorage } from '../../utils';
 import { Authorization } from '../Authorization';
 import { ProtectedRoute } from '../ProtectedRoute';
 import './App.scss';
+import { Hello } from '../Hello';
 
 
 const TOKEN_STORAGE_KEY = 'TOKEN';
@@ -20,7 +21,9 @@ const { REACT_APP_API_KEY } = process.env;
 const INITIAL_STATE = {
 	token: '',
 	boards: [],
-	userProfile: undefined
+	userProfile: undefined,
+	userName: 'bullego1',
+	someText: 'test_test_test'
 }
 
 
@@ -87,7 +90,7 @@ class App extends React.Component<AppProps, AppState> {
 		this.setState({
 			token: token
 		})		
-		setToLocalStorage<CustomToken>(TOKEN_STORAGE_KEY, {token});
+		setToLocalStorage<CustomToken>(TOKEN_STORAGE_KEY, {token, someValue: 10});
 	}
 
 	private goToLogin() {
@@ -95,7 +98,37 @@ class App extends React.Component<AppProps, AppState> {
 	}
 
 	private goToDashboard() {
+		const token = this.state.token;
+		const userName = this.state.userName;		
+		const url = `https://api.trello.com/1/members/${userName}/boards?key=${REACT_APP_API_KEY}&token=${token}`;
+
+		console.log('token FROM APP: ', token);
+		console.log('userName FROM APP: ', userName);
+		console.log('url FROM APP: ', url);
+		
+		fetch(url)
+			.then((response) => {
+				if(response.status !== 200) {
+					throw Error('not success')
+				}
+				return response.json();
+			})
+			.then((boards) => {
+				console.log('Boards: ', boards);
+				
+				this.setBoards(boards);							
+			})
+			.catch(err => {
+				console.log(err);
+			})
+
 		this.props.history.push(ROUTES_URLS.DASHBOARD);
+	}
+
+	private setBoards = (boards: any) => {
+		this.setState({
+			boards: boards
+		})
 	}
 
 	private get isLoggedIn() {
@@ -135,8 +168,15 @@ class App extends React.Component<AppProps, AppState> {
 										return <Authorization {...props} onSetToken={this.setToken} />
 									}}
 					/>
+
 					<Redirect to={ROUTES_URLS.NOT_FOUND} />
 				</Switch>
+
+				<Route  path={ROUTES_URLS.HOME}
+								render={(props: RouteChildrenProps) => {
+									return <Hello {...props} setText={this.someFunc()} boards={this.state.boards} />
+								}}
+				/>
 			</main>
 		)
 	}
@@ -148,6 +188,7 @@ class App extends React.Component<AppProps, AppState> {
 															exact={route.exact}
 															render={route.render}
 															isAuthenticated={this.isLoggedIn}
+															boards={this.state.boards}
 			 				/>
 		}
 		else {
@@ -161,11 +202,15 @@ class App extends React.Component<AppProps, AppState> {
 		}
 	}
 
-	public render() {
+	private someFunc = () => {
+		return this.state.someText
+	}
+
+	public render() {		
 		return (
 			<div>
 				{ this.renderHeader() }
-				{ this.renderContent() }
+				{ this.renderContent() }			
 			</div>
 		)
 	}
@@ -178,3 +223,16 @@ export { AppWithRouter as App };
 // "homepage": "https://bullego.github.io/web-academy_OAuth/",
 // "predeploy": "npm run build",
 // "deploy": "gh-pages -d build",
+
+
+
+/*
+Храним токен в Арр в стейте и передаем его через пропсы в компонент Дашборд
+
+создать страницу-компонент (отдельный роут) Юзерпрофайл и хранить в стейте Юзерпрофайл все запрашиваемые данные в ней, напр. обьект Юзердата и внутри Имя, фамилия, мейл, аватар и т.д. 
+В главном компоненте Арр в стейте храним только токен
+
+Потом это же можно порторить на Редаксе, после проверки задания
+
+
+*/

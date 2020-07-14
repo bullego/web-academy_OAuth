@@ -5,14 +5,17 @@ import { Route,
 				 RouteComponentProps } from 'react-router-dom';
 
 
-interface ProtectedRouteProps extends RouteProps {
+export interface ProtectedRouteProps extends RouteProps {
 	isAuthenticated: boolean;
+	boards: any;
 }
 
 const ProtectedRoute: FunctionComponent<ProtectedRouteProps> = ({ render, isAuthenticated, ...rest }) => {
+	console.log('PROTECTED rest PROPS: ', {...rest});
+	
   return (
-    <Route	{...rest}
-						render={( routeCompPrps: RouteComponentProps ) =>
+		<Route	{...rest}
+						render={( routeCompPrps: RouteComponentProps) =>
 							isAuthenticated ? (
 								render!(routeCompPrps)
 							) : (

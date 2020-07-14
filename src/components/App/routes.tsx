@@ -3,10 +3,12 @@ import { Redirect, RouteChildrenProps } from 'react-router-dom';
 import { Login } from '../Login';
 import { Dashboard } from '../Dashboard';
 import { NotFound } from '../NotFound';
+import { Hello } from '../Hello';
 
 
 export enum ROUTES_URLS {
 	HOME = '/',
+	HELLO = '/hello',
 	LOGIN = '/login',
 	DASHBOARD = '/dashboard',
 	AUTHORIZATION = '/authorization',
@@ -35,7 +37,7 @@ export const routes: Array<AppRoute> = [
 		exact: false,
 		title: 'Go to Dashboard',
 		isProtected: true,
-		render: (props: RouteChildrenProps) => <Dashboard {...props}/>
+		render: (props: RouteChildrenProps) => <Dashboard {...props} boards='tesssst'/>
 	},
 	{
 		path: ROUTES_URLS.HOME,
@@ -47,5 +49,11 @@ export const routes: Array<AppRoute> = [
 		path: ROUTES_URLS.NOT_FOUND,
 		isHidden: true,
 		render: (props: RouteChildrenProps) => <NotFound {...props}/>
+	},
+	{
+		path: ROUTES_URLS.HELLO,
+		exact: true,
+		isHidden: true,
+		render: (props: any) => <Hello {...props}/>
 	}
 ]

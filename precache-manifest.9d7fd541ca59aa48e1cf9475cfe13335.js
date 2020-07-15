@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "4026614ac8b222e60b192f9ff1e1005f",
+    "revision": "1857ed2e4e937225f6cebdec380f82d7",
     "url": "/web-academy_OAuth/index.html"
   },
   {
-    "revision": "d77973a9c1ee41e57173",
+    "revision": "545d27ac64ac69f76e1d",
     "url": "/web-academy_OAuth/static/css/main.dc4ff322.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/web-academy_OAuth/static/js/2.6cf331e3.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "d77973a9c1ee41e57173",
-    "url": "/web-academy_OAuth/static/js/main.911c6727.chunk.js"
+    "revision": "545d27ac64ac69f76e1d",
+    "url": "/web-academy_OAuth/static/js/main.5c7b4306.chunk.js"
   },
   {
     "revision": "82ef9d9830921fa9ceb6",

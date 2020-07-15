@@ -10,7 +10,7 @@ interface PropsHello extends RouteChildrenProps {
 
 export class Hello extends React.Component<PropsHello> {	
 	render() {
-		console.log('APP_PROPS_FROM_HELLO: ', this.props);
+		//console.log('APP_PROPS_FROM_HELLO: ', this.props);
 
 		const { setText: showText } = this.props;
 

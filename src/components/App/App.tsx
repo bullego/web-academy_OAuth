@@ -20,23 +20,24 @@ const TOKEN_STORAGE_KEY = 'TOKEN';
 const { REACT_APP_API_KEY } = process.env;
 const INITIAL_STATE = {
 	token: '',
-	boards: [],
-	userProfile: undefined,
 	userName: 'bullego1',
-	someText: 'test_test_test'
+	userProfile: undefined,
+	someText: 'test_test_test',
+	//boards: [],
 }
 
 
-interface Board {
-	id: string;
-	name: string;
-	desc?: string;
-	pinned: boolean;
-}
+// interface Board {
+// 	id: string;
+// 	name: string;
+// 	desc?: string;
+// 	pinned: boolean;
+// }
 interface AppState {
 	token: string;
-	boards: Array<Board>;
+	userName: string;
 	userProfile: any;
+	//boards: Array<Board>;
 }
 interface AppProps extends RouteComponentProps {
 
@@ -98,37 +99,7 @@ class App extends React.Component<AppProps, AppState> {
 	}
 
 	private goToDashboard() {
-		const token = this.state.token;
-		const userName = this.state.userName;		
-		const url = `https://api.trello.com/1/members/${userName}/boards?key=${REACT_APP_API_KEY}&token=${token}`;
-
-		console.log('token FROM APP: ', token);
-		console.log('userName FROM APP: ', userName);
-		console.log('url FROM APP: ', url);
-		
-		fetch(url)
-			.then((response) => {
-				if(response.status !== 200) {
-					throw Error('not success')
-				}
-				return response.json();
-			})
-			.then((boards) => {
-				console.log('Boards: ', boards);
-				
-				this.setBoards(boards);							
-			})
-			.catch(err => {
-				console.log(err);
-			})
-
 		this.props.history.push(ROUTES_URLS.DASHBOARD);
-	}
-
-	private setBoards = (boards: any) => {
-		this.setState({
-			boards: boards
-		})
 	}
 
 	private get isLoggedIn() {
@@ -174,7 +145,7 @@ class App extends React.Component<AppProps, AppState> {
 
 				<Route  path={ROUTES_URLS.HOME}
 								render={(props: RouteChildrenProps) => {
-									return <Hello {...props} setText={this.someFunc()} boards={this.state.boards} />
+									return <Hello {...props} setText={this.someFunc()} />
 								}}
 				/>
 			</main>
@@ -186,9 +157,14 @@ class App extends React.Component<AppProps, AppState> {
 			return  <ProtectedRoute key={indx} 
 															path={route.path}
 															exact={route.exact}
-															render={route.render}
+															//render={route.render}
+															render={(props) => {
+																console.log('_____PROPS_____: ', props);
+																return route.render({...props,
+																										 token: this.state.token,
+																										 userName: this.state.userName})
+															}}
 															isAuthenticated={this.isLoggedIn}
-															boards={this.state.boards}
 			 				/>
 		}
 		else {

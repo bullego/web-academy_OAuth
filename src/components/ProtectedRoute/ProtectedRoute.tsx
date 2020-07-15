@@ -7,12 +7,9 @@ import { Route,
 
 export interface ProtectedRouteProps extends RouteProps {
 	isAuthenticated: boolean;
-	boards: any;
 }
 
-const ProtectedRoute: FunctionComponent<ProtectedRouteProps> = ({ render, isAuthenticated, ...rest }) => {
-	console.log('PROTECTED rest PROPS: ', {...rest});
-	
+const ProtectedRoute: FunctionComponent<ProtectedRouteProps> = ({ render, isAuthenticated, ...rest }) => {	
   return (
 		<Route	{...rest}
 						render={( routeCompPrps: RouteComponentProps) =>

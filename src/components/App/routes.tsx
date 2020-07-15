@@ -37,7 +37,7 @@ export const routes: Array<AppRoute> = [
 		exact: false,
 		title: 'Go to Dashboard',
 		isProtected: true,
-		render: (props: RouteChildrenProps) => <Dashboard {...props} boards='tesssst'/>
+		render: (props: RouteChildrenProps) => <Dashboard {...props} />
 	},
 	{
 		path: ROUTES_URLS.HOME,

@@ -13,7 +13,7 @@ import { getFromLocalStorage, setToLocalStorage } from '../../utils';
 import { Authorization } from '../Authorization';
 import { ProtectedRoute } from '../ProtectedRoute';
 import './App.scss';
-import { Hello } from '../Hello';
+//import { Hello } from '../Hello';
 
 
 const TOKEN_STORAGE_KEY = 'TOKEN';
@@ -143,11 +143,11 @@ class App extends React.Component<AppProps, AppState> {
 					<Redirect to={ROUTES_URLS.NOT_FOUND} />
 				</Switch>
 
-				<Route  path={ROUTES_URLS.HOME}
+				{/* <Route  path={ROUTES_URLS.HOME}
 								render={(props: RouteChildrenProps) => {
 									return <Hello {...props} setText={this.someFunc()} />
 								}}
-				/>
+				/> */}
 			</main>
 		)
 	}
@@ -208,7 +208,5 @@ export { AppWithRouter as App };
 создать страницу-компонент (отдельный роут) Юзерпрофайл и хранить в стейте Юзерпрофайл все запрашиваемые данные в ней, напр. обьект Юзердата и внутри Имя, фамилия, мейл, аватар и т.д. 
 В главном компоненте Арр в стейте храним только токен
 
-Потом это же можно порторить на Редаксе, после проверки задания
-
-
+Потом это же можно повторить на Редаксе, после проверки задания
 */

@@ -3,12 +3,12 @@ import { Redirect, RouteChildrenProps } from 'react-router-dom';
 import { Login } from '../Login';
 import { Dashboard } from '../Dashboard';
 import { NotFound } from '../NotFound';
-import { Hello } from '../Hello';
+//import { Hello } from '../Hello';
 
 
 export enum ROUTES_URLS {
 	HOME = '/',
-	HELLO = '/hello',
+	//HELLO = '/hello',
 	LOGIN = '/login',
 	DASHBOARD = '/dashboard',
 	AUTHORIZATION = '/authorization',
@@ -50,10 +50,10 @@ export const routes: Array<AppRoute> = [
 		isHidden: true,
 		render: (props: RouteChildrenProps) => <NotFound {...props}/>
 	},
-	{
-		path: ROUTES_URLS.HELLO,
-		exact: true,
-		isHidden: true,
-		render: (props: any) => <Hello {...props}/>
-	}
+	// {
+	// 	path: ROUTES_URLS.HELLO,
+	// 	exact: true,
+	// 	isHidden: true,
+	// 	render: (props: any) => <Hello {...props}/>
+	// }
 ]

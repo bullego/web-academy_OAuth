@@ -22,7 +22,6 @@ const INITIAL_STATE = {
 	token: '',
 	userName: 'bullego1',
 	userProfile: undefined,
-	someText: 'test_test_test',
 	//boards: [],
 }
 
@@ -75,7 +74,8 @@ class App extends React.Component<AppProps, AppState> {
 			this.setProfile(userProfile);
 			this.setToken(token);
 
-			return this.goToDashboard();
+			//return this.goToDashboard();
+			return this.goToUserProfile();
 		}
 
 		return this.goToLogin();
@@ -100,6 +100,10 @@ class App extends React.Component<AppProps, AppState> {
 
 	private goToDashboard() {
 		this.props.history.push(ROUTES_URLS.DASHBOARD);
+	}
+
+	private goToUserProfile() {
+		this.props.history.push(ROUTES_URLS.USER_PROFILE);
 	}
 
 	private get isLoggedIn() {
@@ -142,12 +146,6 @@ class App extends React.Component<AppProps, AppState> {
 
 					<Redirect to={ROUTES_URLS.NOT_FOUND} />
 				</Switch>
-
-				{/* <Route  path={ROUTES_URLS.HOME}
-								render={(props: RouteChildrenProps) => {
-									return <Hello {...props} setText={this.someFunc()} />
-								}}
-				/> */}
 			</main>
 		)
 	}
@@ -178,10 +176,6 @@ class App extends React.Component<AppProps, AppState> {
 		}
 	}
 
-	private someFunc = () => {
-		return this.state.someText
-	}
-
 	public render() {		
 		return (
 			<div>
@@ -199,14 +193,3 @@ export { AppWithRouter as App };
 // "homepage": "https://bullego.github.io/web-academy_OAuth/",
 // "predeploy": "npm run build",
 // "deploy": "gh-pages -d build",
-
-
-
-/*
-Храним токен в Арр в стейте и передаем его через пропсы в компонент Дашборд
-
-создать страницу-компонент (отдельный роут) Юзерпрофайл и хранить в стейте Юзерпрофайл все запрашиваемые данные в ней, напр. обьект Юзердата и внутри Имя, фамилия, мейл, аватар и т.д. 
-В главном компоненте Арр в стейте храним только токен
-
-Потом это же можно повторить на Редаксе, после проверки задания
-*/

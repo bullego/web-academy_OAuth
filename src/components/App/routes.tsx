@@ -2,15 +2,15 @@ import * as React from 'react';
 import { Redirect, RouteChildrenProps } from 'react-router-dom';
 import { Login } from '../Login';
 import { Dashboard } from '../Dashboard';
+import { UserProfile } from '../UserProfile';
 import { NotFound } from '../NotFound';
-//import { Hello } from '../Hello';
 
 
 export enum ROUTES_URLS {
 	HOME = '/',
-	//HELLO = '/hello',
 	LOGIN = '/login',
 	DASHBOARD = '/dashboard',
+	USER_PROFILE = '/userprofile',
 	AUTHORIZATION = '/authorization',
 	NOT_FOUND = '/404',
 }
@@ -40,6 +40,13 @@ export const routes: Array<AppRoute> = [
 		render: (props: RouteChildrenProps) => <Dashboard {...props} />
 	},
 	{
+		path: ROUTES_URLS.USER_PROFILE,
+		exact: false,
+		title: 'Go to User Profile',
+		isProtected: true,
+		render: (props: RouteChildrenProps) => <UserProfile {...props} />
+	},
+	{
 		path: ROUTES_URLS.HOME,
 		exact: true,
 		isHidden: true,
@@ -49,11 +56,5 @@ export const routes: Array<AppRoute> = [
 		path: ROUTES_URLS.NOT_FOUND,
 		isHidden: true,
 		render: (props: RouteChildrenProps) => <NotFound {...props}/>
-	},
-	// {
-	// 	path: ROUTES_URLS.HELLO,
-	// 	exact: true,
-	// 	isHidden: true,
-	// 	render: (props: any) => <Hello {...props}/>
-	// }
+	}
 ]

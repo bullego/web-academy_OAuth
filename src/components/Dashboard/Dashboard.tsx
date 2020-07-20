@@ -30,12 +30,12 @@ export class Dashboard extends React.Component<PropsDashboard, DashState> {
 	}
 
 	private getBoards = () => {
-		console.log('props from app to dash: ', this.props);
+		//console.log('props from app to dash: ', this.props);
 		
 		const { token, userName } = this.props;
 		const url = `https://api.trello.com/1/members/${userName}/boards?key=${REACT_APP_API_KEY}&token=${token}`;
 
-		console.log('url FROM APP: ', url);
+		console.log('url in dashboard: ', url);
 		
 		fetch(url)
 			.then((response) => {
@@ -61,12 +61,8 @@ export class Dashboard extends React.Component<PropsDashboard, DashState> {
 
 	
 	render() {
-		console.log('PROPS_in_DASH: ', this.props);
-
+		//console.log('PROPS_in_DASH: ', this.props);
 		const { boards } = this.state;
-
-		console.log('BoArDs____: ', boards);
-		
 				
 		const showBoards = boards.map((el:any, indx: number) => {
 			return (

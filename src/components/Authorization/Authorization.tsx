@@ -13,8 +13,18 @@ export const Authorization: FunctionComponent<PropsAuthorization> = (props: Prop
 	
 	const {location:{hash}, onSetToken} = props;
 	const token = hash.split('=')[1];
+	//const path = pathname.split('/')[1];
 
 	onSetToken(token);
+	
+	
+	console.log('HISTORY: ', window.location.pathname);
+	console.log('DASHBOARD_URL: ', ROUTES_URLS.DASHBOARD);
 
 	return <Redirect to={ROUTES_URLS.DASHBOARD} />
+
+	// if(pathname === ROUTES_URLS.DASHBOARD) {
+	// 	return <Redirect to={ROUTES_URLS.DASHBOARD} />
+	// }
+	//return <Redirect to={ROUTES_URLS.USER_PROFILE} />
 }

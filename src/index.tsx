@@ -1,11 +1,11 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { App } from './components/App';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 
 const application = 
-	<BrowserRouter>
+	<HashRouter>
 		<App />
-	</BrowserRouter>
+	</HashRouter>
 
 ReactDOM.render(application, document.querySelector('#root'));

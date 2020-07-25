@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1bd6a2e7209becfbdba226a1dd57477a",
+    "revision": "8f5be40db5841d7ea8278c485d901c05",
     "url": "/web-academy_OAuth/index.html"
   },
   {
-    "revision": "9925e27f41223c7430e3",
+    "revision": "1b34da45e442a3789790",
     "url": "/web-academy_OAuth/static/css/main.a9ace6db.chunk.css"
   },
   {
-    "revision": "f6b1b2dfb7d9da4ba024",
-    "url": "/web-academy_OAuth/static/js/2.cffd42b1.chunk.js"
+    "revision": "b3b8d9f9067a9e4c6b08",
+    "url": "/web-academy_OAuth/static/js/2.a8b4a35e.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/web-academy_OAuth/static/js/2.cffd42b1.chunk.js.LICENSE.txt"
+    "url": "/web-academy_OAuth/static/js/2.a8b4a35e.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "9925e27f41223c7430e3",
-    "url": "/web-academy_OAuth/static/js/main.196d27f3.chunk.js"
+    "revision": "1b34da45e442a3789790",
+    "url": "/web-academy_OAuth/static/js/main.8552ebc3.chunk.js"
   },
   {
     "revision": "82ef9d9830921fa9ceb6",
